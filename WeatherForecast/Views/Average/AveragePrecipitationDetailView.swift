@@ -211,7 +211,7 @@ struct AveragePrecipitationDetailView: View {
                         ///
                         /// Nedbørsmengde
                         ///
-                        let d = "\(weatherInfo.averageNormalPrecipitationMonth[month].max)"  // Må erstatte [4] med en måned
+                        let d = "\(weatherInfo.averageNormalPrecipitationMonth[month].max)"
                         Text(String("\(a) \(b) \(c) \(d) mm."))
                         Spacer()
                     }
