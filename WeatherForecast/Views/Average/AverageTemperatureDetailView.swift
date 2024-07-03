@@ -265,9 +265,9 @@ struct AverageTemperatureDetailView: View {
             let from = FormatDateToString(date:  GetLocalDate(date: Date()), format: "d. MMMM", offsetSec: 0)
             info = info + from + " "
             info = info + String(localized: "the normal temperature is in between ")
-            info = info + String(format: "%.0f", weatherInfo.normalDailyLowTemp ?? 0.00)
+            info = info + String(format: "%.0f", weatherInfo.temperaturMinMaxArrayMinAverageMinTemp ?? 0.00)
             info = info + String(localized: "º and ")
-            info = info + String(format: "%.0f", weatherInfo.normalDailyHighTemp ?? 0.00)
+            info = info + String(format: "%.0f", weatherInfo.temperaturMinMaxArrayMinAverageMaxTemp ?? 0.00)
             info = info + "º,"
             info = info + String(localized: " and normally the highest temperature is ")
             info = info + String(format: "%.0f", weatherInfo.normalDailyHighTemp ?? 0.00)

@@ -77,7 +77,9 @@ struct AverageFirstView: View {
     @State private var averageNormalPrecipitationMonth: [AverageNormalPrecipitationMonth] = []
 
     @State private var divisor: Double = 10.00
-    
+
+    @State private var maxx: Double = 0.00
+    @State private var minx: Double = -273.15
     
     var body: some View {
         VStack {
@@ -412,14 +414,27 @@ struct AverageFirstView: View {
                 for i in 0..<count3 {
                     t.id = UUID()
                     t.min = minAverageHourArray[i]
+                    ///
+                    /// Finner minste verdien av min normal temperatur
+                    ///
+                    if minx < minAverageHourArray[i] {
+                        minx = minAverageHourArray[i]
+                    }
                     t.max = maxAverageHourArray[i]
+                    ///
+                    /// Finner største verdi av max normal temperatur
+                    ///
+                    if maxx < maxAverageHourArray[i] {
+                        maxx = maxAverageHourArray[i]
+                    }
                     t.temp = tempTodayArray[i]
                     t.type = String(localized: "Temperature")
                     t.hour = i
                     temperaturMinMaxArray.append(t)
                 }
                 weatherInfo.temperaturMinMaxArray = temperaturMinMaxArray
-                
+                weatherInfo.temperaturMinMaxArrayMinAverageMinTemp = minx
+                weatherInfo.temperaturMinMaxArrayMinAverageMaxTemp = maxx
                 ///
                 /// Finn 10 eller 30 år med nebør ut fra Setting
                 ///

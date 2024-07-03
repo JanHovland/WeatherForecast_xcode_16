@@ -106,5 +106,10 @@ import Observation
     var placeLongitude: Double?
     var placeOffsetString: String = ""
     var placeOffsetSec: Int = 0
+    ///
+    /// Min og maks gjennomsnittstemoeraturer
+    ///
+    var temperaturMinMaxArrayMinAverageMinTemp: Double?
+    var temperaturMinMaxArrayMinAverageMaxTemp: Double?
 
 }
