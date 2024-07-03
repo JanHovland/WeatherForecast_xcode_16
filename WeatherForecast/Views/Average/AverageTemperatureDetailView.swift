@@ -43,7 +43,7 @@ struct AverageTemperatureDetailView: View {
                         } else if weatherInfo.dailyDeviationTemp > 0 {
                             Text("\(String(describing: weatherInfo.dailyDeviationTemp))º")
                             Text(" over the normal")
-                        } else {
+                        } else if weatherInfo.dailyDeviationTemp < 0 {
                             Text("\(abs(weatherInfo.dailyDeviationTemp))º")
                             Text(" under the normal")
                         }
