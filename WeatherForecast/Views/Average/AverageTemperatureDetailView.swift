@@ -174,8 +174,8 @@ struct AverageTemperatureDetailView: View {
                             Text(String(localized: "Normalarea"))
                                 .foregroundStyle(.white)
                             let t = String(localized: "to")
-                            let u =  Int(round(weatherInfo.normalDailyLowTemp ?? 0))
-                            let v =  Int(round(weatherInfo.normalDailyHighTemp ?? 0))
+                            let u =  Int(round(weatherInfo.temperaturMinMaxArrayAverageMinTemp ?? 0))
+                            let v =  Int(round(weatherInfo.temperaturMinMaxArrayAverageMaxTemp ?? 0))
                             Text("(\(u)º \(t) \(v)º)")
                                 .foregroundStyle(.white)
                         }
