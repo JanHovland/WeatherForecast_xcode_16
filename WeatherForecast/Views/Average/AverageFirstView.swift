@@ -79,7 +79,7 @@ struct AverageFirstView: View {
     @State private var divisor: Double = 10.00
 
     @State private var maxx: Double = 0.00
-    @State private var minx: Double = -273.15
+    @State private var minx: Double = 0.00
     
     var body: some View {
         VStack {
@@ -417,15 +417,26 @@ struct AverageFirstView: View {
                     ///
                     /// Finner minste verdien av min normal temperatur
                     ///
-                    if minx < minAverageHourArray[i] {
+//                    if minx < minAverageHourArray[i] {
+//                        minx = minAverageHourArray[i]
+//                    }
+                    if i == 0 {
                         minx = minAverageHourArray[i]
+                    } else {
+                        if minAverageHourArray[i] < minx {
+                            minx = minAverageHourArray[i]
+                        }
                     }
                     t.max = maxAverageHourArray[i]
                     ///
                     /// Finner største verdi av max normal temperatur
                     ///
-                    if maxx < maxAverageHourArray[i] {
+                    if i == 0 {
                         maxx = maxAverageHourArray[i]
+                    } else {
+                        if maxAverageHourArray[i] > maxx {
+                            maxx = maxAverageHourArray[i]
+                        }
                     }
                     t.temp = tempTodayArray[i]
                     t.type = String(localized: "Temperature")
@@ -433,8 +444,8 @@ struct AverageFirstView: View {
                     temperaturMinMaxArray.append(t)
                 }
                 weatherInfo.temperaturMinMaxArray = temperaturMinMaxArray
-                weatherInfo.temperaturMinMaxArrayMinAverageMinTemp = minx
-                weatherInfo.temperaturMinMaxArrayMinAverageMaxTemp = maxx
+                weatherInfo.temperaturMinMaxArrayAverageMinTemp = minx
+                weatherInfo.temperaturMinMaxArrayAverageMaxTemp = maxx
                 ///
                 /// Finn 10 eller 30 år med nebør ut fra Setting
                 ///

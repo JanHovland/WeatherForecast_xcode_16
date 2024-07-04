@@ -109,7 +109,7 @@ import Observation
     ///
     /// Min og maks gjennomsnittstemoeraturer
     ///
-    var temperaturMinMaxArrayMinAverageMinTemp: Double?
-    var temperaturMinMaxArrayMinAverageMaxTemp: Double?
+    var temperaturMinMaxArrayAverageMinTemp: Double?
+    var temperaturMinMaxArrayAverageMaxTemp: Double?
 
 }

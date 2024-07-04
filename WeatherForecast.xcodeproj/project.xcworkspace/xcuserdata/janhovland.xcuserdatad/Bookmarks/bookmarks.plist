@@ -12,13 +12,13 @@
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>170</string>
+					<string>171</string>
 					<key>StartingColumnNumber</key>
 					<string>0</string>
 					<key>StartingLineNumber</key>
 					<string>170</string>
 					<key>Timestamp</key>
-					<string>741686176.301815</string>
+					<string>741764941.6311899</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -34,15 +34,16 @@
 			<key>text-context</key>
 			<dict>
 				<key>focused</key>
-				<string></string>
+				<string>                ///
+</string>
 				<key>leading</key>
 				<string>                normalMeanTemp = sumMeanTemp / Double(counterMean)
                 normalHighTemp = sumMaxTemp / Double(counterMax)
 </string>
 				<key>trailing</key>
-				<string>                ///
-                /// Finner differansen mellom dagens høyeste temperatur og normalt høyeste temperatur
+				<string>                /// Finner differansen mellom dagens høyeste temperatur og normalt høyeste temperatur
                 ///
+                if normalHighTemp &gt; 0.00 {
 </string>
 			</dict>
 			<key>type</key>
@@ -56,13 +57,13 @@
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>435</string>
+					<string>446</string>
 					<key>StartingColumnNumber</key>
 					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>434</string>
+					<string>445</string>
 					<key>Timestamp</key>
-					<string>741686176.301852</string>
+					<string>741765790.0618221</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -85,8 +86,8 @@
                 }
 </string>
 				<key>trailing</key>
-				<string>                weatherInfo.temperaturMinMaxArrayMinAverageMinTemp = minx
-                weatherInfo.temperaturMinMaxArrayMinAverageMaxTemp = maxx
+				<string>                weatherInfo.temperaturMinMaxArrayAverageMinTemp = minx
+                weatherInfo.temperaturMinMaxArrayAverageMaxTemp = maxx
                 ///
 </string>
 			</dict>
