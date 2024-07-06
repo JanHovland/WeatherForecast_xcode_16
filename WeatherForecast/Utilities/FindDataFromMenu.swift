@@ -97,6 +97,9 @@ func FindDataFromMenu(info: String,
     dewPointArray.removeAll()
     newPrecipitation.removeAll()
     
+    if hourForecast == nil {
+//        exit(1)
+    }
     switch option {
     case .temperature :
         var i: Int = 0

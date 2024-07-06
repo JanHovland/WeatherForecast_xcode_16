@@ -440,7 +440,9 @@ struct WeatherForecast: View {
             } catch {
                 debugPrint(error)
                 title = "Error finding 'hourForecast'."
-                message = ServerResponse(error: error.localizedDescription)
+                let msg = "\(error)"
+//                message = ServerResponse(error: error.localizedDescription)
+                message = ServerResponse(error: msg)
                 showAlert.toggle()
             }
             ///
