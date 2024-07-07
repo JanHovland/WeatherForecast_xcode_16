@@ -448,7 +448,7 @@ struct WeatherForecast: View {
             } catch {
                 debugPrint(error)
                 let string = String(localized: "Error finding 'hourForecast'.")
-                title = "\(weatherInfo.placeName) \n\n \(string) \(showShortly)"
+                title = "\(weatherInfo.placeName) \n\n \(string) \(showMessageOnlyForAFewSeconds)"
                 let msg = "\(error)"
                 message = ServerResponse(error: msg)
                 showDismissAlert.toggle()
