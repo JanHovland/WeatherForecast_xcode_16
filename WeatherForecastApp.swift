@@ -22,5 +22,8 @@ struct WeatherForecastApp: App {
                 .environment(screenSize)
         }
     }
+    func exitApp() {
+        exit(0)
+    }
 }
 

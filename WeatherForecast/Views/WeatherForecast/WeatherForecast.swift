@@ -77,6 +77,7 @@ struct WeatherForecast: View {
     @State private var title: LocalizedStringKey = ""
     @State private var showAlert: Bool = false
     @State private var showAlertFile: Bool = false
+    @State private var showDismissAlert: Bool = false
     @State private var showAlertCloudKit: Bool = false
     @State private var array: [Double] = Array(repeating: Double(), count: sizeArray24)
     @State private var persist: Bool = true
@@ -269,6 +270,13 @@ struct WeatherForecast: View {
                   dismissButton: .cancel(Text("Terminate this app")))
         }
         ///
+        /// Avslutter appen med DismissAlert
+        ///
+        .alert(isPresented: $showDismissAlert) {
+            Alert(title: Text(title),
+                  message: Text(message))
+        }
+        ///
         /// Status for lagring på CloudKit
         ///
         .alert(title, isPresented: $showAlertCloudKit) {
@@ -439,20 +447,16 @@ struct WeatherForecast: View {
                                                                                           endDate: endDate!))
             } catch {
                 debugPrint(error)
-                title = "Error finding 'hourForecast'."
+                let string = String(localized: "Error finding 'hourForecast'.")
+                title = "\(string) \(showShortly)"
                 let msg = "\(error)"
-//                message = ServerResponse(error: error.localizedDescription)
                 message = ServerResponse(error: msg)
-                showAlert.toggle()
-            }
-            ///
-            /// Sjekker om hourForecast ikke er tom:
-            ///
-            if hourForecast?.isEmpty == true {
+                showDismissAlert.toggle()
                 persist = false
-                title = "Find the hourForecast data"
-                message = "The hourForecast is empty."
-                showAlert.toggle()
+                ///
+                /// Lukker denne meldingen etter 10 sekunder:
+                ///
+                dismissAlert(seconds: 10)
             }
             ///
             /// Går bare videre dersom persist er true:
@@ -682,4 +686,8 @@ struct WeatherForecast: View {
     }
 }
 
-// Detter er enn test
+func dismissAlert(seconds: Double) {
+    DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+        WeatherForecastApp().exitApp()
+    }
+}

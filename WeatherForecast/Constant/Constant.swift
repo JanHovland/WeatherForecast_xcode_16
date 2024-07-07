@@ -90,4 +90,5 @@ let monthName: [String] = [String(localized: "Jan"),
                            String(localized: "Nov"),
                            String(localized: "Dec")
                          ]
-/****//****//****//****//****//****/
+ 
+let showShortly = String(localized: "\n\nPlease note that this alert will only show for a few seconds and then the App will automatically shut down.")
