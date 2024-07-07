@@ -379,11 +379,17 @@ struct WeatherForecast: View {
             ///
             /// Sjekker om det kommer koordinater fra FindCurrentLocation:
             ///
-            if weatherInfo.latitude == 0.00 && weatherInfo.longitude == 0.00 {
+            if weatherInfo.latitude != 0.00 && weatherInfo.longitude != 0.00 {
+                let string = String(localized: "Cannot find the local coordinates.")
+                title = "\n\n \(string) \(showMessageOnlyForAFewSeconds)"
+                let string1 = String(localized: "No local coordinates found.")
+                message = "\n\(string1)"
+                showDismissAlert.toggle()
                 persist = false
-                title = "Missing coordinates from FindCurrentLocation()"
-                message = "No coordinates found."
-                showAlert.toggle()
+                 ///
+                /// Lukker denne meldingen etter 10 sekunder:
+                ///
+                dismissAlert(seconds: 10)
             }
         }
         if persist == true {

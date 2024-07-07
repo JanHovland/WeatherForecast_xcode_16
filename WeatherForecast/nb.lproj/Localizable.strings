@@ -1170,10 +1170,7 @@
 "Find the weather data" = "Finn vær data";
 
 /* No comment provided by engineer. */
-"Missing coordinates from FindCurrentLocation()" = "Mangler koordinater fra FindCurrentLocation()";
-
-/* No comment provided by engineer. */
-"No coordinates found.\n\nPlease note that this alert will only show for a few seconds and then the App will automatically shut down." = "Ingen koordinater funnet.\n\nVær oppmerksom på at dette varselet bare vises i noen få sekunder, og deretter vil appen automatisk slå seg av.";
+"Cannot find the local coordinates." = "Kan ikke finne de lokale koordinatene.";
 
 /* No comment provided by engineer. */
 "Refresh for all places has started.\n\nPlease note that this alert will only show for a few seconds." = "Oppdatering for alle stedene har startet.\n\nVær oppmerksom på at dette varselet vil bare vises i noen sekunder.";
@@ -1510,9 +1507,6 @@
 
 /* No comment provided by engineer. */
 "Nitric oxide (NO)" = "Nitrogenoksid (NO)";
-
-/* No comment provided by engineer. */
-"No coordinates found.\n\nPlease note that this alert will only show for a few seconds.\nThen the app will terminate." = "Ingen koordinater funnet.\n\nVær oppmerksom på at dette varselet bare vises i noen få sekunder.\nDeretter vil appen avsluttes.";
 
 /* No comment provided by engineer. */
 "Terminate this app" = "Avslutt denne appen";
@@ -1968,3 +1962,5 @@
 /* No comment provided by engineer. */
 "\n\nPlease note that this alert will only show for a few seconds and then the App will automatically shut down." = "\n\nVær oppmerksom på at dette varselet bare vises i noen få sekunder, og deretter vil appen automatisk slå seg av.";
 
+/* No comment provided by engineer. */
+"No local coordinates found." = "Ingen lokale koordinater nle funnet";
