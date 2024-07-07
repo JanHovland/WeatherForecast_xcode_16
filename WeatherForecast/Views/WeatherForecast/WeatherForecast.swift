@@ -274,15 +274,12 @@ struct WeatherForecast: View {
         ///
         .alert(isPresented: $showDismissAlert) {
             Alert(title: Text(title),
-                  message: Text(message))
-        }
-        ///
-        /// Status for lagring på CloudKit
-        ///
-        .alert(title, isPresented: $showAlertCloudKit) {
-            }
-            message: {
-                Text(message)
+                  message: Text(message),
+                  dismissButton: .destructive(Text("Cancel"),
+                  action: {
+                        WeatherForecastApp().exitApp()
+                  }
+              ))
         }
         .navigationBarTitleDisplayMode(.inline)
             ///
@@ -453,7 +450,7 @@ struct WeatherForecast: View {
                 message = ServerResponse(error: msg)
                 showDismissAlert.toggle()
                 persist = false
-                ///
+                 ///
                 /// Lukker denne meldingen etter 10 sekunder:
                 ///
                 dismissAlert(seconds: 10)
