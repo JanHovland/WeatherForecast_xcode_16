@@ -13,6 +13,7 @@ func FindMoonUpDown(url: String,
                     longitude: Double?) async -> (String, MoonRecord) {
     
     var errors : String = ""
+    var qerror : String = ""
     var lat: String = ""
     var lon: String = ""
     var moonRecord = MoonRecord()
@@ -29,10 +30,17 @@ func FindMoonUpDown(url: String,
     }
     let urlString = url + "key=" + key + "&q=" + "\(lat),\(lon)"
     let url = URL(string: urlString)
+    ///
+    /// Feil url: astronomy settes til astronomi https://api.weatherapi.com/v1/astronomi.json?key=c698affa91fa4e8fa7a95556230511&q=58.617191,5.644975
+    ///
     if let url {
         do {
             let urlSession = URLSession.shared
-            let (jsonData, _) = try await urlSession.data(from: url)
+            let (jsonData, err) = try await urlSession.data(from: url)
+            ///
+            /// Finner response ut fra err
+            ///
+            qerror = "\(err)"
             let metApiMoon = try? JSONDecoder().decode(WeatherApiMoon.self, from: jsonData)
             ///
             /// Oppdaterer moonRecord:
@@ -67,5 +75,8 @@ func FindMoonUpDown(url: String,
             errors = "\(error)"
         }
     }
+    
+    errors = "\(qerror)"
+    
     return (errors, moonRecord)
 }

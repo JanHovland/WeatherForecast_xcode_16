@@ -508,7 +508,7 @@ struct WeatherForecast: View {
                     currentWeather.dayLength = value.3
                     currentWeather.dayIncrease = value.4
                     ///
-                    /// Finner data for månen:
+                    /// Finner måne-oppgang og måne-nedgang:
                     ///
                     let url1 = UserDefaults.standard.object(forKey: "UrlWeatherApiMoon") as? String ?? ""
                     let key = UserDefaults.standard.object(forKey: "KeyWeatherApi") as? String ?? ""
@@ -517,19 +517,27 @@ struct WeatherForecast: View {
                                          key: key,
                                          latitude: weatherInfo.latitude,
                                          longitude: weatherInfo.longitude)
-                    if error != "" {
-                        moonRecord = MoonRecord()
-                    } else {
-                        moonRecord = moonRec
+                    
+                    if error.count > 0 {
+                        if error.contains("200") {
+                            ///
+                            /// OK == 200 Successful responses (200 – 299)
+                            ///
+                            persist = true
+                        } else {
+                            let string = String(localized: "Cannot find moon data.")
+                            title = "\n\n \(string) \(showMessageOnlyForAFewSeconds)"
+                            message = ServerResponse(error: error)
+                            showDismissAlert.toggle()
+                            persist = false
+                            ///
+                            /// Lukker denne meldingen etter 10 sekunder:
+                            ///
+                            dismissAlert(seconds: 10)
+                        }
                     }
-                    ///
-                    /// Gir melding og avslutter appen dersom sola data er tom :
-                    ///
-                    if sunRises.isEmpty == true || sunSets.isEmpty == true {
-                        persist = false
-                        title = "Find data for the the Sun or the Moon"
-                        message = "The Sun or Moon data are empty."
-                        showAlert.toggle()
+                    if persist == true {
+                        moonRecord = moonRec
                     }
                 }
                 ///

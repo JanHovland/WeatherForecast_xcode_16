@@ -1157,16 +1157,6 @@
 "Find the hourForecast data" = "Finn hourForecast data";
 
 /* No comment provided by engineer. */
-"The hourForecast is empty.\n\nPlease note that this alert will only show for a few seconds."  = "HourForecast er tom.\n\nVær oppmerksom på at dette varselet bare vises i noen få sekunder.";
-
-/* No comment provided by engineer. */
-"Find data for the the Sun or the Moon" = "Finn data for solen eller månen";
-
-/* No comment provided by engineer. */
-"The Sun or Moon data are empty.\n\nPlease note that this alert will only show for a few seconds.\nThen the app will terminate."
-   = "Sol- eller månedataene er tomme.\n\nVær oppmerksom på at dette varselet bare vises i noen få sekunder.\nDeretter avsluttes appen.";
-
-/* No comment provided by engineer. */
 "Find the weather data" = "Finn vær data";
 
 /* No comment provided by engineer. */
@@ -1510,9 +1500,6 @@
 
 /* No comment provided by engineer. */
 "Terminate this app" = "Avslutt denne appen";
-
-/* No comment provided by engineer. */
-"The hourForecast is empty.\n\nPlease note that this alert will only show for a few seconds.\nThen the app will terminate." = "Timevarselet er tomt.\n\nVær oppmerksom på at dette varselet bare vises i noen få sekunder.\nDeretter vil appen avsluttes.";
 
 /* No comment provided by engineer. */
 "Error finding 'hourForecast'." = "Finner ikke 'hourForecast'.";
@@ -2000,6 +1987,9 @@
 
 /* No comment provided by engineer. */
 "Cannot find sun data." = "Kan ikke finne data for solen.";
+
+/* No comment provided by engineer. */
+"Cannot find moon data." = "Kan ikke finne data for månen.";
 
 
 
