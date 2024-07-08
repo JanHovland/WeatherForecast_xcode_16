@@ -490,6 +490,13 @@ var toDo_2 =
   107. 🔴 Erstatte Geosatellite fra met.no
   108. 🔴 .
           🔴 .
+  109. 🔴 Sjekk server response fra:
+          🟢 FindCurrentLocation()
+          🟢 'hourForecast'
+          🟢 FindSunUpDown()
+          🟢 FindMoonUpDown()
+          🔴 FindAirQuality()
+          🔴 'dailyForecast'
 """
 
 struct ToDoView: View {

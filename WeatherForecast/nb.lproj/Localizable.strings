@@ -1950,7 +1950,7 @@
 "No local coordinates found." = "Ingen lokale koordinater nle funnet";
 
 /* No comment provided by engineer. */
-"Error code = 400 Bad Request" = "\nFeil kode 400 'Feil ved anmodning'";
+"Error code = 400 Bad Request" = "\nFeil kode 400 'Feil med formatet til forespørselen'";
 
 /* No comment provided by engineer. */
 "Error code = 401 Unauthorized" = "\nFeil kode 401 'Uautorisert'";
