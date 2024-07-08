@@ -37,7 +37,6 @@ struct AverageTemperatureDetailView: View {
         VStack {
             ScrollView(showsIndicators: false) {
                 VStack {
-                    Text("Deviation: \(weatherInfo.dailyDeviationTemp)")
                     HStack(spacing: 0) {
                         if weatherInfo.dailyDeviationTemp == 0 {
                             Text("As normal")

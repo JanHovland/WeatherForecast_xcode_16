@@ -95,8 +95,8 @@ struct HourOverview: View {
                                     .padding(.top, -10)
                             }
                             VStack {
-                                SunRiseOrSet(option: .sunrise, date: hourItem.date, sunTime: sunRises)
-                                SunRiseOrSet(option: .sunset, date: hourItem.date, sunTime: sunSets)
+//                                SunRiseOrSet(option: .sunrise, date: hourItem.date, sunTime: sunRises)
+//                                SunRiseOrSet(option: .sunset, date: hourItem.date, sunTime: sunSets)
                             }
                             ///
                             /// padding mellom elementene i HStack

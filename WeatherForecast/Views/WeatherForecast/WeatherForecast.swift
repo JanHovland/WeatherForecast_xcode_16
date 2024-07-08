@@ -468,6 +468,8 @@ struct WeatherForecast: View {
                 ///
                 /// Finner soloppgang og solnedgang:
                 ///
+                sunRises.removeAll()
+                sunSets.removeAll()
                 let url = UserDefaults.standard.object(forKey: "UrlMetNo") as? String ?? ""
                 let value : (String, [String], [String], Int, Int) =
                 await FindSunUpDown(url: url,
@@ -476,42 +478,59 @@ struct WeatherForecast: View {
                                     latitude: weatherInfo.latitude,
                                     longitude: weatherInfo.longitude,
                                     offsetSec: weatherInfo.offsetSec)
-                if value.0.isEmpty {
+                if value.0.count > 0 {
+                    if value.0.contains("200") {
+                        ///
+                        /// OK == 200 Successful responses (200 – 299)
+                        ///
+                      persist = true
+                    } else {
+                        let string = String(localized: "Cannot find sun data.")
+                        title = "\n\n \(string) \(showMessageOnlyForAFewSeconds)"
+                        message = ServerResponse(error: value.0)
+                        showDismissAlert.toggle()
+                        persist = false
+                        ///
+                        /// Lukker denne meldingen etter 10 sekunder:
+                        ///
+                        dismissAlert(seconds: 10)
+                    }
+                }
+                ///
+                /// Går bare videre dersom persist er true:
+                ///
+                if persist == true {
                     sunRises = value.1
                     sunSets = value.2
-                }
-                else {
-                    sunRises.removeAll()
-                    sunSets.removeAll()
-                }
-                ///
-                /// Oppdatere lengden av dagen
-                ///
-                currentWeather.dayLength = value.3
-                currentWeather.dayIncrease = value.4
-                ///
-                /// Finner data for månen:
-                ///
-                let url1 = UserDefaults.standard.object(forKey: "UrlWeatherApiMoon") as? String ?? ""
-                let key = UserDefaults.standard.object(forKey: "KeyWeatherApi") as? String ?? ""
-                let (error, moonRec) =
-                await FindMoonUpDown(url: url1,
-                                     key: key,
-                                     latitude: weatherInfo.latitude,
-                                     longitude: weatherInfo.longitude)
-                if error != "" {
-                    moonRecord = MoonRecord()
-                } else {
-                    moonRecord = moonRec
-                }
-                ///
-                /// Gir melding og avslutter appen dersom sola data er tom :
-                ///
-                if sunRises.isEmpty == true || sunSets.isEmpty == true {
-                    persist = false
-                    title = "Find data for the the Sun or the Moon"
-                    message = "The Sun or Moon data are empty."
-                    showAlert.toggle()
+                    ///
+                    /// Oppdatere lengden av dagen
+                    ///
+                    currentWeather.dayLength = value.3
+                    currentWeather.dayIncrease = value.4
+                    ///
+                    /// Finner data for månen:
+                    ///
+                    let url1 = UserDefaults.standard.object(forKey: "UrlWeatherApiMoon") as? String ?? ""
+                    let key = UserDefaults.standard.object(forKey: "KeyWeatherApi") as? String ?? ""
+                    let (error, moonRec) =
+                    await FindMoonUpDown(url: url1,
+                                         key: key,
+                                         latitude: weatherInfo.latitude,
+                                         longitude: weatherInfo.longitude)
+                    if error != "" {
+                        moonRecord = MoonRecord()
+                    } else {
+                        moonRecord = moonRec
+                    }
+                    ///
+                    /// Gir melding og avslutter appen dersom sola data er tom :
+                    ///
+                    if sunRises.isEmpty == true || sunSets.isEmpty == true {
+                        persist = false
+                        title = "Find data for the the Sun or the Moon"
+                        message = "The Sun or Moon data are empty."
+                        showAlert.toggle()
+                    }
                 }
                 ///
                 /// Går bare videre dersom persist er true:

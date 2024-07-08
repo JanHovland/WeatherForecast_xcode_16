@@ -19,6 +19,7 @@ func FindSunUpDown(url: String,
     var gesternRise: String = ""
     var gesternSet: String = ""
     var errors : String = ""
+    var qerror : String = ""
     var dayLength: Int = 0
     var dayIncrease: Int = 0
     var timeRise : String = ""
@@ -52,11 +53,19 @@ func FindSunUpDown(url: String,
         let date = Date().adding(days: i)
         let calculatedDate = FormatDateToString(date: date, format: "yyyy-MM-dd", offsetSec: offsetSec)
         let urlString = url + "lat=" + lat + "&lon=" + lon + "&date=" + calculatedDate + "&offset=" + offset
+///
+///        Test for feilmelding, lagt til &da=2 :
+///        let urlString = "https://api.met.no/weatherapi/sunrise/3.0/sun?lat=58.617261&lon=5.6451&date=2024-07-07&offset=+02:00&da=2"
+///
         let url = URL(string: urlString)
         if let url {
             do {
                 let urlSession = URLSession.shared
-                let (jsonData, _) = try await urlSession.data(from: url)
+                let (jsonData, err) = try await urlSession.data(from: url)
+                ///
+                /// Finner response ut fra err
+                ///
+                qerror = "\(err)"
                 let metApi = try? JSONDecoder().decode(MetApiSun.self, from: jsonData)
                 /// Sender kun HH:mm ;
                 ///
@@ -88,6 +97,8 @@ func FindSunUpDown(url: String,
     }
     dayLength = SunDailyLength(from: sunRise[0], to: sunSet[0])
     dayIncrease = dayLength - SunDailyLength(from: gesternRise, to: gesternSet)
+    
+    errors = "\(qerror)"
     
     return (errors, sunRise, sunSet, dayLength, dayIncrease)
 }

@@ -79,14 +79,84 @@ func Response(response: String,
 
 func ResponseInfo(string: String) -> LocalizedStringKey {
     
+    /// https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
     /// https://no.wikipedia.org/wiki/Liste_over_HTTP-statuskoder
+    
+    ///  HTTP response status codes indicate whether a specific HTTP request has been successfully completed. Responses are grouped in five classes:
+    ///
+    ///  Informational responses (100 – 199)
+    ///  Successful responses (200 – 299)
+    ///  Redirection messages (300 – 399)
+    ///  Client error responses (400 – 499)
+    ///  Server error responses (500 – 599)
     
     var response: LocalizedStringKey = ""
     
-    if string.contains("400") {
-        response = "Error code = 400 Bad Request"
+    
+    if string.contains("200") {
+        response = "Error = 200 OK"
     }
     
+    if string.contains("400") {
+        response = "Error code = 400 Bad Request"
+    } else if string.contains("401") {
+        response = "Error code = 401 Unauthorized"
+    } else if string.contains("402") {
+        response = "Error code = 402 Payment Required"
+    } else if string.contains("403") {
+        response = "Error code = 403 Forbidden"
+    } else if string.contains("404") {
+        response = "Error code = 404 Not Found"
+    } else if string.contains("405") {
+        response = "Error code = 405 Method Not Allowed"
+    } else if string.contains("406") {
+        response = "Error code = 406 Not Acceptable"
+    } else if string.contains("407") {
+        response = "Error code = 407 Proxy Authentication Required"
+    } else if string.contains("408") {
+        response = "Error code = 408 Request Timeout"
+    } else if string.contains("409") {
+        response = "Error code = 409 Conflict"
+    } else if string.contains("410") {
+        response = "Error code = 410 Gone"
+    } else if string.contains("411") {
+        response = "Error code = 411 Length Required"
+    } else if string.contains("412") {
+        response = "Error code = 412 Precondition Failed"
+    } else if string.contains("413") {
+        response = "Error code = 413 Payload Too Large"
+    } else if string.contains("414") {
+        response = "Error code = 414 URI Too Long"
+    } else if string.contains("415") {
+        response = "Error code = 415 Unsupported Media Type"
+    } else if string.contains("416") {
+        response = "Error code = 416 Range Not Satisfiable"
+    } else if string.contains("417") {
+        response = "Error code = 417 Expectation Failed"
+    } else if string.contains("418") {
+        response = "Error code = 418 I'm a teapot"
+    } else if string.contains("421") {
+        response = "Error code = 421 Misdirected Request"
+    } else if string.contains("422") {
+        response = "Error code = 422 Unprocessable Content (WebDAV)"
+    } else if string.contains("423") {
+        response = "Error code = 423 Locked (WebDAV)"
+    } else if string.contains("424") {
+        response = "Error code = 424 Failed Dependency (WebDAV)"
+    } else if string.contains("425") {
+        response = "Error code = 425 Too Early "
+    } else if string.contains("426") {
+        response = "Error code = 426 Upgrade Required"
+    } else if string.contains("428") {
+        response = "Error code = 428 Precondition Required"
+    } else if string.contains("429") {
+        response = "Error code = 429 Too Many Requests"
+    } else if string.contains("431") {
+        response = "Error code = 431 Request Header Fields Too Large"
+    } else if string.contains("451") {
+        response = "Error code = 451 Unavailable For Legal Reasons"
+    }
+
     return response
     
 }

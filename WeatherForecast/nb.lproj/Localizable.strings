@@ -1957,10 +1957,49 @@
 "Open OpenWeatherMap" = "Åpne OpenWeatherMap";
 
 /* No comment provided by engineer. */
-"Error code = 400 Bad Request" = "\nFeil kode 400 'Feil ved anmodning'";
-
-/* No comment provided by engineer. */
 "\n\nPlease note that this alert will only show for a few seconds and then the App will automatically shut down." = "\n\nVær oppmerksom på at dette varselet bare vises i noen få sekunder, og deretter vil appen automatisk slå seg av.";
 
 /* No comment provided by engineer. */
 "No local coordinates found." = "Ingen lokale koordinater nle funnet";
+
+/* No comment provided by engineer. */
+"Error code = 400 Bad Request" = "\nFeil kode 400 'Feil ved anmodning'";
+
+/* No comment provided by engineer. */
+"Error code = 401 Unauthorized" = "\nFeil kode 401 'Uautorisert'";
+
+/* No comment provided by engineer. */
+"Error code = 402 Payment Required" = "\nFeil kode 402 Betaling påkrevd'";
+
+/* No comment provided by engineer. */
+"Error code = 403 Forbidden" = "\nFeil kode 403 Forbudt'";
+
+/* No comment provided by engineer. */
+"Error code = 404 Not Found" = "\nFeil kode 404 Ikke Funnet'";
+
+/* No comment provided by engineer. */
+"Error code = 405 Method Not Allowed" = "\nFeil kode 405 Metode ikke tillatt'";
+
+/* No comment provided by engineer. */
+"Error code = 406 Not Acceptable" = "\nFeil kode 406 Uakseptabelt'";
+
+/* No comment provided by engineer. */
+"Error code = 407 Proxy Authentication Required" = "\nFeil kode 407 Proxy-autentisering krevest'";
+
+/* No comment provided by engineer. */
+"Error code = 408 Request Timeout" = "\nFeil kode 408 Forespørselens tidsgrense utløpt'";
+
+/* No comment provided by engineer. */
+"Error code = 410 Gone" = "\nFeil kode 410 Forsvunnet/avviklet'";
+
+/* No comment provided by engineer. */
+"Error code = 451 Unavailable For Legal Reasons" = "\nFeil kode 451 Utilgjengelig av juridiske årsaker'";
+
+/* No comment provided by engineer. */
+"Error = 200 OK" = "\nFeil kode = 200 OK'";
+
+/* No comment provided by engineer. */
+"Cannot find sun data." = "Kan ikke finne data for solen.";
+
+
+
