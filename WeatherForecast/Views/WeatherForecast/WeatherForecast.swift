@@ -673,46 +673,43 @@ struct WeatherForecast: View {
                 let date = Date().adding(seconds: weatherInfo.offsetSec)
                 let startDate = date.setTime(hour: 0, min: 0, sec: 0)
                 let endDate = (Calendar.current.date(byAdding: .day, value: 10, to: startDate ?? Date())!).setTime(hour: 0, min: 0, sec: 0)
-
+                
                 do {
                     dailyForecast = try await WeatherService.shared.weather(for: location,
                                                                             including: .daily(startDate: startDate!,
                                                                                               endDate: endDate!))
                 } catch {
-                    debugPrint(error)
-                    title = "Error finding 'dailyForecast'"
-                    message = ServerResponse(error: error.localizedDescription)
-                    showAlert.toggle()
+                    let string = String(localized: "Error finding 'dailyForecast'")
+                    title = "\(weatherInfo.placeName) \n\n \(string) \(showMessageOnlyForAFewSeconds)"
+                    let msg = "\(error)"
+                    message = ServerResponse(error: msg)
+                    showDismissAlert.toggle()
+                    persist = false
+                    ///
+                    /// Lukker denne meldingen etter 10 sekunder:
+                    ///
+                    dismissAlert(seconds: 10)
                 }
                 ///
                 ///
-                /// Sjekker om hourForecast inneholder noen verdier > 0,00
+                /// Sjekker om hourForecast inneholder noen verdier av snø > 0,00
                 ///
-                if dailyForecast != nil {
-                    someSnow = false
-                    dailyForecast!.forEach  {
-                        if $0.date >= startDate! &&
-                            $0.date <= endDate! {
-                            if $0.precipitationAmountByType.snowfallAmount.amount.value > 0.00 {
-                                someSnow = true
-                            }
-                        }
-                    }
-                    ///
-                    /// Oppdaterer temperaturene for weatherInfo
-                    ///
-                    weatherInfo.lowTemperature = dailyForecast!.forecast[0].lowTemperature.value
-                    weatherInfo.highTemperature = dailyForecast!.forecast[0].highTemperature.value
-                } else {
-                    weatherInfo.offsetString = ""
-                    persist = false
-                    title = "Find the dailyForecast data"
-                    message = "The dailyForecast is empty."
-                    showAlert.toggle()
-                } 
+//                someSnow = false
+//                dailyForecast!.forEach  {
+//                    if $0.date >= startDate! &&
+//                        $0.date <= endDate! {
+//                        if $0.precipitationAmountByType.snowfallAmount.amount.value > 0.00 {
+//                            someSnow = true
+//                        }
+//                    }
+//                }
+//                ///
+//                /// Oppdaterer temperaturene for weatherInfo
+//                ///
+//                weatherInfo.lowTemperature = dailyForecast!.forecast[0].lowTemperature.value
+//                weatherInfo.highTemperature = dailyForecast!.forecast[0].highTemperature.value
             }
         }
-        
     }
 }
 

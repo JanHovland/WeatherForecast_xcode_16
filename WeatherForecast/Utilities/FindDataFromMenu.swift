@@ -98,7 +98,7 @@ func FindDataFromMenu(info: String,
     newPrecipitation.removeAll()
     
     if hourForecast == nil {
-//        exit(1)
+         
     }
     switch option {
     case .temperature :

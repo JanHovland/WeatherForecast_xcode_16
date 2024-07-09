@@ -488,15 +488,17 @@ var toDo_2 =
           🔴 Gjennomsnittsverdier temperatur
           🔴 Gjennomsnittsverdier nedbør
   107. 🔴 Erstatte Geosatellite fra met.no
-  108. 🔴 .
-          🔴 .
-  109. 🔴 Sjekk server response fra:
+  108. 🔴 Sjekk server response fra:
           🟢 FindCurrentLocation()
           🟢 'hourForecast'
           🟢 FindSunUpDown()
           🟢 FindMoonUpDown()
-          🔴 FindAirQuality()
+          🔴 'weather'
           🔴 'dailyForecast'
+          🔴 GetAverageDayWeather()
+          🔴 FindAirQuality()
+  109. 🔴 .
+          🔴 .
 """
 
 struct ToDoView: View {
