@@ -490,12 +490,12 @@ var toDo_2 =
   107. 🔴 Erstatte Geosatellite fra met.no
   108. 🔴 Sjekk server response fra:
           🟢 FindCurrentLocation()
+          🔴 GetAverageDayWeather()
+          🟢 'dailyForecast'
           🟢 'hourForecast'
           🟢 FindSunUpDown()
           🟢 FindMoonUpDown()
           🔴 'weather'
-          🔴 'dailyForecast'
-          🔴 GetAverageDayWeather()
           🔴 FindAirQuality()
   109. 🔴 .
           🔴 .
