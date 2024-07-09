@@ -409,9 +409,7 @@ struct WeatherForecast: View {
                     startDate = startDate30Years
                     weatherInfo.startYear = "1991"
                 }
-                
-                (errorMessage, averageYearsPerDayDataRecord) = 
-                
+                (errorMessage, averageYearsPerDayDataRecord) =
                 await GetAverageDayWeather(startDate: startDate,
                                            endDate: endDateYears,
                                            lat: weatherInfo.latitude ?? 0.00,
@@ -428,6 +426,56 @@ struct WeatherForecast: View {
                     message = errorMessage
                     showAlert.toggle()
                 }
+            }
+        }
+        if persist == true {
+            ///
+            /// Finner snøfallet i perioden ut fra weather.dailyForecast
+            ///
+            ///
+            /// Finner hourForecast
+            ///
+            dailyForecast = nil
+            
+            let location = CLLocation(latitude: weatherInfo.latitude ?? 0.00, longitude: weatherInfo.longitude ?? 0.00)
+            
+            let date = Date().adding(seconds: weatherInfo.offsetSec)
+            let startDate = date.setTime(hour: 0, min: 0, sec: 0)
+            let endDate = (Calendar.current.date(byAdding: .day, value: 10, to: startDate ?? Date())!).setTime(hour: 0, min: 0, sec: 0)
+            do {
+                dailyForecast = try await WeatherService.shared.weather(for: location,
+                                                                        including: .daily(startDate: startDate!,
+                                                                                          endDate: endDate!))
+            } catch {
+                let string = String(localized: "Error finding 'dailyForecast'")
+                title = "\(weatherInfo.placeName) \n\n \(string) \(showMessageOnlyForAFewSeconds)"
+                let msg = "\(error)"
+                message = ServerResponse(error: msg)
+                showDismissAlert.toggle()
+                persist = false
+                ///
+                /// Lukker denne meldingen etter 10 sekunder:
+                ///
+                dismissAlert(seconds: 10)
+            }
+            if persist == true {
+                ///
+                /// Sjekker om hourForecast inneholder noen verdier av snø > 0,00
+                ///
+                someSnow = false
+                dailyForecast!.forEach  {
+                    if $0.date >= startDate! &&
+                        $0.date <= endDate! {
+                        if $0.precipitationAmountByType.snowfallAmount.amount.value > 0.00 {
+                            someSnow = true
+                        }
+                    }
+                }
+                ///
+                /// Oppdaterer temperaturene for weatherInfo
+                ///
+                weatherInfo.lowTemperature = dailyForecast!.forecast[0].lowTemperature.value
+                weatherInfo.highTemperature = dailyForecast!.forecast[0].highTemperature.value
             }
         }
         if persist == true {
@@ -659,56 +707,6 @@ struct WeatherForecast: View {
                 ///
                 opacitySize = 1.00
             } /// if persist == true
-            if persist == true {
-                ///
-                /// Finner snøfallet i perioden ut fra weather.dailyForecast
-                ///
-                ///
-                /// Finner hourForecast
-                ///
-                dailyForecast = nil
-                
-                let location = CLLocation(latitude: weatherInfo.latitude ?? 0.00, longitude: weatherInfo.longitude ?? 0.00)
-                
-                let date = Date().adding(seconds: weatherInfo.offsetSec)
-                let startDate = date.setTime(hour: 0, min: 0, sec: 0)
-                let endDate = (Calendar.current.date(byAdding: .day, value: 10, to: startDate ?? Date())!).setTime(hour: 0, min: 0, sec: 0)
-                
-                do {
-                    dailyForecast = try await WeatherService.shared.weather(for: location,
-                                                                            including: .daily(startDate: startDate!,
-                                                                                              endDate: endDate!))
-                } catch {
-                    let string = String(localized: "Error finding 'dailyForecast'")
-                    title = "\(weatherInfo.placeName) \n\n \(string) \(showMessageOnlyForAFewSeconds)"
-                    let msg = "\(error)"
-                    message = ServerResponse(error: msg)
-                    showDismissAlert.toggle()
-                    persist = false
-                    ///
-                    /// Lukker denne meldingen etter 10 sekunder:
-                    ///
-                    dismissAlert(seconds: 10)
-                }
-                ///
-                ///
-                /// Sjekker om hourForecast inneholder noen verdier av snø > 0,00
-                ///
-//                someSnow = false
-//                dailyForecast!.forEach  {
-//                    if $0.date >= startDate! &&
-//                        $0.date <= endDate! {
-//                        if $0.precipitationAmountByType.snowfallAmount.amount.value > 0.00 {
-//                            someSnow = true
-//                        }
-//                    }
-//                }
-//                ///
-//                /// Oppdaterer temperaturene for weatherInfo
-//                ///
-//                weatherInfo.lowTemperature = dailyForecast!.forecast[0].lowTemperature.value
-//                weatherInfo.highTemperature = dailyForecast!.forecast[0].highTemperature.value
-            }
         }
     }
 }
