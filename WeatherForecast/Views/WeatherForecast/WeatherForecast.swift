@@ -393,6 +393,7 @@ struct WeatherForecast: View {
             }
         }
         if persist == true {
+            persist = false
             ///
             /// Datoer for normalperioden
             ///
@@ -417,16 +418,20 @@ struct WeatherForecast: View {
                 ///
                 /// Viser eventuelle feilmeldinger
                 ///
-                print("errorMessage = \(errorMessage)")
-                let string = String(localized: "Cannot find the AverageData.")
-                title = "\(string) \(showMessageOnlyForAFewSeconds) \n"
-                message = errorMessage
-                showDismissAlert.toggle()
-                persist = false
-                ///
-                /// Lukker denne meldingen etter 10 sekunder:
-                ///
-                dismissAlert(seconds: 1000)
+                if errorMessage.stringKey?.count ?? 0 > 0 {
+                    print("errorMessage = \(errorMessage)")
+                    let string = String(localized: "Cannot find the AverageData.")
+                    title = "\(string) \(showMessageOnlyForAFewSeconds) \n"
+                    message = errorMessage
+                    showDismissAlert.toggle()
+                    persist = false
+                    ///
+                    /// Lukker denne meldingen etter 10 sekunder:
+                    ///
+                    dismissAlert(seconds: 10)
+                } else {
+                    persist = true
+                }
             }
         }
         if persist == true {
@@ -717,3 +722,4 @@ func dismissAlert(seconds: Double) {
         WeatherForecastApp().exitApp()
     }
 }
+

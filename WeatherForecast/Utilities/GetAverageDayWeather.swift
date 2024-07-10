@@ -72,7 +72,7 @@ func GetAverageDayWeather(startDate: String,
 //        urlPart1 + "\(lat)" + "&longitude=" + "\(lon)" + urlPart2 + "&start_date=" + startDate + "&end_date=" + endDate
 //        let url = URL(string: urlString)
         /// https://archive-api.open-meteo.com/v1/archive?latitude=58.617291&longitude=5.644895&timezone=auto&daily=precipitation_sum,temperature_2m_min,temperature_2m_max&start_date=2011-01-01&end_date=2020-12-31
-        let urlString = "https://archive-api.open-mete.com/v1/archive?latitude=58.617291&longitude=5.644895&timezone=auto&daily=precipitation_sum,temperature_2m_min,temperature_2m_max&start_date=2011-01-01&end_date=2020-12-31"
+        let urlString = "https://archive-api.open-meteo.com/v1/archive?latitude=58.617291&longitude=5.644895&timezone=auto&daily=precipitation_summ,temperature_2m_min,temperature_2m_max&start_date=2011-01-01&end_date=2020-12-31"
         
         let url = URL(string: urlString)
         ///
@@ -83,30 +83,18 @@ func GetAverageDayWeather(startDate: String,
                 let urlSession = URLSession.shared
                 let (jsonData, response) = try await urlSession.data(from: url)
                 ///
+                /// Finner response ut fra err
+                ///
+                errorMessage = ServerResponse(error:"\(response)")
+                ///
                 /// Finner statusCode fra response
                 ///
                 let res = response as? HTTPURLResponse
                 httpStatus = res!.statusCode
                 ///
-                /// 200 OK
-                /// The request succeeded.
+                /// Sjekker httpStatus
                 ///
-                /// 400 Bad Request
-                /// The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).
-                ///
-                if httpStatus > 200,
-                   httpStatus <= 499 {
-                    if httpStatus == 400 {
-                        let msg = String(localized: "400 = Bad Request")
-                        errorMessage = LocalizedStringKey(msg)
-                    } else if httpStatus == 429 {
-                        let msg = String("429 = Too Many Requests, the user has sent too many requests in a given amount of time (\"rate limiting\")")
-                        errorMessage = LocalizedStringKey(msg)
-                    } else {
-                        let msg = "\(httpStatus)"
-                        errorMessage = LocalizedStringKey(msg)
-                    }
-                } else {
+                if httpStatus == 200 {
                     if let averageData = try? JSONDecoder().decode(AverageDailyData.self, from: jsonData) {
                         ///
                         /// Oppdatering av averageDailyDataRecord
@@ -119,6 +107,8 @@ func GetAverageDayWeather(startDate: String,
                         let msg = String(localized: "Can not find any average data")
                         errorMessage = LocalizedStringKey(msg)
                     }
+                } else {
+                    errorMessage = ServerResponse(error:"\(response)")
                 }
             } catch {
                 let response = CatchResponse(response: "\(error)",
