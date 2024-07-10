@@ -1985,5 +1985,8 @@
 /* No comment provided by engineer. */
 "Cannot find moon data." = "Kan ikke finne data for månen.";
 
+/* No comment provided by engineer. */
+"Cannot find the AverageData." = "Kan ikke finne gjennomsnitt data.";
+
 
 

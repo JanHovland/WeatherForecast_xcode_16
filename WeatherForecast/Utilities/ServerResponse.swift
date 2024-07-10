@@ -77,6 +77,36 @@ func Response(response: String,
     return serverResponse
 }
 
+func CatchResponse(response: String,
+                   searchFrom: String,
+                   searchTo: String) -> String {
+    
+    var serverResponse: String = ""
+
+    let range = response.range(of: searchFrom)
+    let range1 = response.range(of: searchTo)
+
+    var index: Int = 0
+    var index1: Int = 0
+
+    if let range = range {
+        index = response.distance(from: response.startIndex, to: range.lowerBound)
+    }
+
+    if let range1 = range1 {
+        index1 = response.distance(from: response.startIndex, to: range1.lowerBound)
+    }
+
+    let startIndex = response.index(response.startIndex, offsetBy: index)
+    let endIndex = response.index(response.startIndex, offsetBy: index1)
+    let substring = String(response[startIndex..<endIndex])
+    
+    serverResponse = substring
+    
+    return serverResponse
+}
+
+
 func ResponseInfo(string: String) -> LocalizedStringKey {
     
     /// https://developer.mozilla.org/en-US/docs/Web/HTTP/Status

@@ -491,6 +491,13 @@ var toDo_2 =
   108. 🔴 Sjekk server response fra:
           🟢 FindCurrentLocation()
           🔴 GetAverageDayWeather()
+              🟡 Finne status kode direkte f.eks. 404:
+                 let (jsonData, response) = try await urlSession.data(from: url)
+                 ///
+                 /// Finner statusCode fra response
+                 ///
+                 let res = response as? HTTPURLResponse
+                 httpStatus = res!.statusCode
           🟢 'dailyForecast'
           🟢 'hourForecast'
           🟢 FindSunUpDown()

@@ -417,15 +417,16 @@ struct WeatherForecast: View {
                 ///
                 /// Viser eventuelle feilmeldinger
                 ///
+                print("errorMessage = \(errorMessage)")
+                let string = String(localized: "Cannot find the AverageData.")
+                title = "\(string) \(showMessageOnlyForAFewSeconds) \n"
+                message = errorMessage
+                showDismissAlert.toggle()
+                persist = false
                 ///
-                /// stringKey kommer fra extension LocalizedStringKey i Extensions.swift
+                /// Lukker denne meldingen etter 10 sekunder:
                 ///
-                if errorMessage.stringKey!.count > 0 {
-                    persist = false
-                    title = "AverageData"
-                    message = errorMessage
-                    showAlert.toggle()
-                }
+                dismissAlert(seconds: 1000)
             }
         }
         if persist == true {
