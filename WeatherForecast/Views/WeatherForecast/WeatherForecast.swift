@@ -393,7 +393,6 @@ struct WeatherForecast: View {
             }
         }
         if persist == true {
-            persist = false
             ///
             /// Datoer for normalperioden
             ///
@@ -410,6 +409,7 @@ struct WeatherForecast: View {
                     startDate = startDate30Years
                     weatherInfo.startYear = "1991"
                 }
+//                persist = false
                 (errorMessage, averageYearsPerDayDataRecord) =
                 await GetAverageDayWeather(startDate: startDate,
                                            endDate: endDateYears,
@@ -418,13 +418,12 @@ struct WeatherForecast: View {
                 ///
                 /// Viser eventuelle feilmeldinger
                 ///
-                if errorMessage.stringKey?.count ?? 0 > 0 {
-                    print("errorMessage = \(errorMessage)")
+                if errorMessage.stringKey?.count ?? 10 > 0 {
+                    persist = false
                     let string = String(localized: "Cannot find the AverageData.")
                     title = "\(string) \(showMessageOnlyForAFewSeconds) \n"
                     message = errorMessage
                     showDismissAlert.toggle()
-                    persist = false
                     ///
                     /// Lukker denne meldingen etter 10 sekunder:
                     ///

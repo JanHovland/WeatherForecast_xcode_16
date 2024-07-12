@@ -68,11 +68,10 @@ func GetAverageDayWeather(startDate: String,
     /// Feilmelding dersom urlPart1 og / eller urlPart2 ikke har verdi
     ///
     if urlPart1.count > 0, urlPart2.count > 0 {
-//        let urlString =
-//        urlPart1 + "\(lat)" + "&longitude=" + "\(lon)" + urlPart2 + "&start_date=" + startDate + "&end_date=" + endDate
-//        let url = URL(string: urlString)
-        /// https://archive-api.open-meteo.com/v1/archive?latitude=58.617291&longitude=5.644895&timezone=auto&daily=precipitation_sum,temperature_2m_min,temperature_2m_max&start_date=2011-01-01&end_date=2020-12-31
-        let urlString = "https://archive-api.open-meteo.com/v1/archive?latitude=58.617291&longitude=5.644895&timezone=auto&daily=precipitation_summ,temperature_2m_min,temperature_2m_max&start_date=2011-01-01&end_date=2020-12-31"
+        let urlString =
+        urlPart1 + "\(lat)" + "&longitude=" + "\(lon)" + urlPart2 + "&start_date=" + startDate + "&end_date=" + endDate
+/// Test:
+//         let urlString = "https://archive-api.open-mete.com/v1/archive?latitude=58.617291&longitude=5.644895&timezone=auto&daily=precipitation_sum,temperature_2m_min,temperature_2m_max&start_date=2011-01-01&end_date=2020-12-31"
         
         let url = URL(string: urlString)
         ///
@@ -82,9 +81,6 @@ func GetAverageDayWeather(startDate: String,
             do {
                 let urlSession = URLSession.shared
                 let (jsonData, response) = try await urlSession.data(from: url)
-                ///
-                /// Finner response ut fra err
-                ///
                 errorMessage = ServerResponse(error:"\(response)")
                 ///
                 /// Finner statusCode fra response
@@ -103,6 +99,7 @@ func GetAverageDayWeather(startDate: String,
                         averageDailyDataRecord.precipitationSum = (averageData.daily.precipitationSum)
                         averageDailyDataRecord.temperature2MMin = (averageData.daily.temperature2MMin)
                         averageDailyDataRecord.temperature2MMax = (averageData.daily.temperature2MMax)
+                        errorMessage = ""
                     } else {
                         let msg = String(localized: "Can not find any average data")
                         errorMessage = LocalizedStringKey(msg)
