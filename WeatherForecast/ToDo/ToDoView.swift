@@ -493,7 +493,7 @@ var toDo_2 =
           🟢 GetAverageDayWeather()
           🟢 'dailyForecast'
           🟢 'hourForecast'
-          🔴 FindSunUpDown()
+          🟢 FindSunUpDown()
           🔴 FindMoonUpDown()
           🔴 'weather'
           🟢 FindAirQuality()   nruk som master !!!!!!
