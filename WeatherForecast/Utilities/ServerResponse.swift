@@ -51,10 +51,6 @@ func ServerResponse(error: String) -> LocalizedStringKey {
 //    
 //    let range = msg.range(of: "Status Code:")
 //    let index = msg.distance(from: msg.startIndex, to: range.lowerBound)
-//    print(index)
-    
-    // print("Range = \(range)")
-    
 }
 
 func Response(response: String,

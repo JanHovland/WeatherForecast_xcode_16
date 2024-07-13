@@ -114,7 +114,5 @@ func FindSunUpDown(url: String,
     dayLength = SunDailyLength(from: sunRise[0], to: sunSet[0])
     dayIncrease = dayLength - SunDailyLength(from: gesternRise, to: gesternSet)
     
-    print(errorMessage)
-    
     return (errorMessage, sunRise, sunSet, dayLength, dayIncrease)
 }

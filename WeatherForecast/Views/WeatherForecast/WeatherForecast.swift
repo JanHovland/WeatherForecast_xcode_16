@@ -570,25 +570,17 @@ struct WeatherForecast: View {
                                          latitude: weatherInfo.latitude,
                                          longitude: weatherInfo.longitude)
                     
-                    if error.count > 0 {
-                        if error.contains("200") {
-                            ///
-                            /// OK == 200 Successful responses (200 – 299)
-                            ///
-                            persist = true
-                        } else {
-                            let string = String(localized: "Cannot find moon data.")
-                            title = "\n\n \(string) \(showMessageOnlyForAFewSeconds)"
-                            message = ServerResponse(error: error)
-                            showDismissAlert.toggle()
-                            persist = false
-                            ///
-                            /// Lukker denne meldingen etter 10 sekunder:
-                            ///
-                            dismissAlert(seconds: 10)
-                        }
-                    }
-                    if persist == true {
+                    if error.stringKey?.count ?? 10 > 0 {
+                        let string = String(localized: "Cannot find moon data.")
+                        title = "\(string) \(showMessageOnlyForAFewSeconds)\n"
+                        message = error
+                        showDismissAlert.toggle()
+                        persist = false
+                        ///
+                        /// Lukker denne meldingen etter 10 sekunder:
+                        ///
+                        dismissAlert(seconds: 10)
+                    } else {
                         moonRecord = moonRec
                     }
                 }
