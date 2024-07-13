@@ -490,18 +490,11 @@ var toDo_2 =
   107. 🔴 Erstatte Geosatellite fra met.no
   108. 🔴 Sjekk server response fra:
           🟢 FindCurrentLocation()
-          🔴 GetAverageDayWeather()
-              🟡 Finne status kode direkte f.eks. 404:
-                 let (jsonData, response) = try await urlSession.data(from: url)
-                 ///
-                 /// Finner statusCode fra response
-                 ///
-                 let res = response as? HTTPURLResponse
-                 httpStatus = res!.statusCode
+          🟢 GetAverageDayWeather()
           🟢 'dailyForecast'
           🟢 'hourForecast'
-          🟢 FindSunUpDown()
-          🟢 FindMoonUpDown()
+          🔴 FindSunUpDown()
+          🔴 FindMoonUpDown()
           🔴 'weather'
           🔴 FindAirQuality()
   109. 🔴 .

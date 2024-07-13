@@ -66,6 +66,7 @@ func FindSunUpDown(url: String,
                 /// Finner response ut fra err
                 ///
                 qerror = "\(err)"
+                
                 let metApi = try? JSONDecoder().decode(MetApiSun.self, from: jsonData)
                 /// Sender kun HH:mm ;
                 ///

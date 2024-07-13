@@ -601,17 +601,24 @@ struct WeatherForecast: View {
                     /// Finner AirQuality:
                     ///
                    let url1 = UserDefaults.standard.object(forKey: "UrlOpenWeather") as? String ?? ""
-                    let (status, airQuality) : (String, AirQualityRecord) =
+                    let (errorMessage, airQuality) : (LocalizedStringKey, AirQualityRecord) =
                     await FindAirQuality(url: url1,
                                          key: UserDefaults.standard.object(forKey: "KeyOpenWeather") as? String ?? "",
                                          latitude : weatherInfo.latitude ?? 0.00,
                                          longitude:  weatherInfo.longitude ?? 0.00)
-                    
-                    if status.count > 0 {
+                    ///
+                    /// Skriver ut eventuelle feilmeldinger
+                    ///
+                    if errorMessage.stringKey?.count ?? 10 > 0 {
+                        let string = String(localized: "Cannot find data for the Air Quality.")
+                        title = "\(string) \(showMessageOnlyForAFewSeconds)\n"
+                        message = errorMessage
+                        showDismissAlert.toggle()
                         persist = false
-                        title = "Find data for the Air Quality"
-                        message = "The Air Quality data is empty."
-                        showAlert.toggle()
+                        ///
+                        /// Lukker denne meldingen etter 10 sekunder:
+                        ///
+                        dismissAlert(seconds: 10)
                     }
                     
                     if persist == true {
@@ -622,7 +629,7 @@ struct WeatherForecast: View {
                         do {
                             self.weather = try await weatherService.weather(for: location)
                             if let weather,
-                               status == "" {
+                               errorMessage == "" {
                                 ///
                                 /// Legger inn Airquality:
                                 ///

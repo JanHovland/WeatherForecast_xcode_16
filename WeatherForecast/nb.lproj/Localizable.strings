@@ -1988,5 +1988,8 @@
 /* No comment provided by engineer. */
 "Cannot find the AverageData." = "Kan ikke finne gjennomsnitt data.";
 
+/* No comment provided by engineer. */
+"Cannot find data for the Air Quality." = "Kan ikke finne data for luftkvaliteten.";
+
 
 
