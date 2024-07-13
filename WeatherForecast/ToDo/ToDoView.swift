@@ -496,7 +496,7 @@ var toDo_2 =
           🔴 FindSunUpDown()
           🔴 FindMoonUpDown()
           🔴 'weather'
-          🔴 FindAirQuality()
+          🟢 FindAirQuality()   nruk som master !!!!!!
   109. 🔴 .
           🔴 .
 """

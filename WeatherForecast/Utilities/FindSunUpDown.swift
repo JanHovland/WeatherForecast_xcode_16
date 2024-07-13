@@ -6,26 +6,28 @@
 //
 
 import Foundation
+import SwiftUI
 
 func FindSunUpDown(url: String,
                    offset: String,
                    days: Int,
                    latitude : Double?,
                    longitude: Double?,
-                   offsetSec: Int) async -> (String, [String], [String], Int, Int) {
+                   offsetSec: Int) async -> (LocalizedStringKey, [String], [String], Int, Int) {
     
     var sunRise: [String] = Array(repeating: "", count: sizeArray10)
     var sunSet: [String] = Array(repeating: "", count: sizeArray10)
     var gesternRise: String = ""
     var gesternSet: String = ""
-    var errors : String = ""
-    var qerror : String = ""
     var dayLength: Int = 0
     var dayIncrease: Int = 0
     var timeRise : String = ""
     var timeSet : String = ""
     var lat: String = ""
     var lon: String = ""
+    
+    var errorMessage: LocalizedStringKey = ""
+    var httpStatus: Int = 0
     
     if latitude != nil {
         lat = "\(latitude!)"
@@ -54,52 +56,65 @@ func FindSunUpDown(url: String,
         let calculatedDate = FormatDateToString(date: date, format: "yyyy-MM-dd", offsetSec: offsetSec)
         let urlString = url + "lat=" + lat + "&lon=" + lon + "&date=" + calculatedDate + "&offset=" + offset
 ///
-///        Test for feilmelding, lagt til &da=2 :
-///        let urlString = "https://api.met.no/weatherapi/sunrise/3.0/sun?lat=58.617261&lon=5.6451&date=2024-07-07&offset=+02:00&da=2"
-///
+///        Test for feilmelding, lagt til &da=2  og met = mett
+//        let urlString = "https://api.mett.no/weatherapi/sunrise/3.0/sun?lat=58.617261&lon=5.6451&date=2024-07-07&offset=+02:00&da=2"
         let url = URL(string: urlString)
         if let url {
             do {
                 let urlSession = URLSession.shared
-                let (jsonData, err) = try await urlSession.data(from: url)
+                let (jsonData, response) = try await urlSession.data(from: url)
                 ///
-                /// Finner response ut fra err
+                /// Finner statusCode fra response
                 ///
-                qerror = "\(err)"
-                
-                let metApi = try? JSONDecoder().decode(MetApiSun.self, from: jsonData)
-                /// Sender kun HH:mm ;
-                ///
-                if metApi?.properties?.sunrise != nil {
-                    let timeUp = (metApi?.properties!.sunrise.time)!
-                    timeRise = ""
-                    for j in 11...15 {
-                        timeRise = timeRise + timeUp[j]
+                let res = response as? HTTPURLResponse
+                httpStatus = res!.statusCode
+
+                if httpStatus == 200 {
+                    let metApi = try? JSONDecoder().decode(MetApiSun.self, from: jsonData)
+                    /// Sender kun HH:mm ;
+                    ///
+                    if metApi?.properties?.sunrise != nil {
+                        let timeUp = (metApi?.properties!.sunrise.time)!
+                        timeRise = ""
+                        for j in 11...15 {
+                            timeRise = timeRise + timeUp[j]
+                        }
                     }
-                }
-                if metApi?.properties?.sunset != nil{
-                    let timeDown = (metApi?.properties!.sunset.time)!
-                    timeSet = ""
-                    for j in 11...15 {
-                        timeSet = timeSet + timeDown[j]
+                    if metApi?.properties?.sunset != nil{
+                        let timeDown = (metApi?.properties!.sunset.time)!
+                        timeSet = ""
+                        for j in 11...15 {
+                            timeSet = timeSet + timeDown[j]
+                        }
                     }
+                } else {
+                    ///
+                    /// Returnerer errorMessage
+                    ///
+                    errorMessage = ServerResponse(error:"\(response)")
                 }
             } catch {
-                errors = "\(error)"
+                ///
+                /// Returnerer errorMessage
+                ///
+                let response = CatchResponse(response: "\(error)",
+                                             searchFrom: "Code=",
+                                             searchTo: "UserInfo")
+                errorMessage = "\(response)"
             }
         }
         if i == -1 {
             gesternRise = timeRise
             gesternSet = timeSet
-       } else {
+        } else {
             sunRise.append(timeRise)
             sunSet.append(timeSet)
-       }
+        }
     }
     dayLength = SunDailyLength(from: sunRise[0], to: sunSet[0])
     dayIncrease = dayLength - SunDailyLength(from: gesternRise, to: gesternSet)
     
-    errors = "\(qerror)"
+    print(errorMessage)
     
-    return (errors, sunRise, sunSet, dayLength, dayIncrease)
+    return (errorMessage, sunRise, sunSet, dayLength, dayIncrease)
 }
