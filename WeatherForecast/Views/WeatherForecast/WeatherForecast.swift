@@ -438,7 +438,7 @@ struct WeatherForecast: View {
             /// Finner snøfallet i perioden ut fra weather.dailyForecast
             ///
             ///
-            /// Finner hourForecast
+            /// Finner dailyForecast
             ///
             dailyForecast = nil
             
