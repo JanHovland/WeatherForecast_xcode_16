@@ -501,7 +501,6 @@ struct WeatherForecast: View {
                                                                        including: .hourly(startDate: startDate!,
                                                                                           endDate: endDate!))
             } catch {
-                debugPrint(error)
                 let string = String(localized: "Error finding 'hourForecast'.")
                 title = "\(weatherInfo.placeName) \n\n \(string) \(showMessageOnlyForAFewSeconds)"
                 let msg = "\(error)"
@@ -687,7 +686,6 @@ struct WeatherForecast: View {
                                 currentWeather.windDirection = weather.currentWeather.wind.direction.value
                             }
                         } catch {
-                            debugPrint(error)
                             title = "Error finding 'weather'"
                             message = ServerResponse(error: error.localizedDescription)
                             showAlert.toggle()
