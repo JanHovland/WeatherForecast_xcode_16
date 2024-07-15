@@ -474,28 +474,26 @@ var toDo_2 =
           🟢 Luftfuktighet
           🟢 Sikt
           🟢 Lufttrykk
-  105. 🔴 Tilpasse DayDetailIcons() avhengig av screenSize.screenWidth:
+  105. 🟢 Tilpasse DayDetailIcons() avhengig av screenSize.screenWidth:
           🟢 Værforhold + klokkeslett
           🟢 UV-indeks + klokkeslett
           🟢 Vind
-          🔴 Føles som
-          🔴 Luftfuktighet
-          🔴 Sikt
-          🔴 Lufttrykk  
-  106. 🔴 Sjekke om dette må rettes: AverageTemperatureDetailView() linje 125:
-             "toDayAverageTemperatureArray"
-  106. 🔴 Nye tilpasninger fra Apple "Været"
-          🔴 Gjennomsnittsverdier temperatur
-          🔴 Gjennomsnittsverdier nedbør
-  107. 🔴 Erstatte Geosatellite fra met.no
-  108. 🔴 Sjekk server response fra:
+          🟢 Føles som
+          🟢 Luftfuktighet
+          🟢 Sikt
+          🟢 Lufttrykk  
+  106. 🟢 Nye tilpasninger fra Apple "Været"
+          🟢 Gjennomsnittsverdier temperatur
+          🟢 Gjennomsnittsverdier nedbør
+  107. 🟢 Erstatte Geosatellite fra met.no
+  108. 🟢 Sjekk server response fra:
           🟢 FindCurrentLocation()
           🟢 GetAverageDayWeather()
           🟢 'dailyForecast'
           🟢 'hourForecast'
           🟢 FindSunUpDown()
           🟢 FindMoonUpDown()
-          🔴 'weather'
+          🟢 'weather'
           🟢 FindAirQuality()   nruk som master !!!!!!
   109. 🔴 .
           🔴 .
