@@ -409,7 +409,6 @@ struct WeatherForecast: View {
                     startDate = startDate30Years
                     weatherInfo.startYear = "1991"
                 }
-//                persist = false
                 (errorMessage, averageYearsPerDayDataRecord) =
                 await GetAverageDayWeather(startDate: startDate,
                                            endDate: endDateYears,
@@ -465,7 +464,7 @@ struct WeatherForecast: View {
             }
             if persist == true {
                 ///
-                /// Sjekker om hourForecast inneholder noen verdier av snø > 0,00
+                /// Sjekker om dailyForecast inneholder noen verdier av snø > 0,00
                 ///
                 someSnow = false
                 dailyForecast!.forEach  {
@@ -695,8 +694,7 @@ struct WeatherForecast: View {
                             ///
                             /// Lukker denne meldingen etter 10 sekunder:
                             ///
-                            DismissAlertAndExitApp(seconds: 10, alert: &showAlert)
-                            
+                            dismissAlert(seconds: 10)
                         }
                     } /// if persist == true
                 } /// if persist == true
