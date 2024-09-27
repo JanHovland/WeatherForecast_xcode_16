@@ -5,6 +5,9 @@
 //  Created by Jan Hovland on 20/03/2024.
 //
 
+/// Kan kompileres med : Version 16.0 (16A242d)
+
+
 import SwiftUI
 
 struct AverageFirstView: View {
