@@ -49,10 +49,9 @@ func GetAverageHourWeather(year: Int,
     var averageHourlyDataRecord = AverageHourlyDataRecord(time: [""],
                                                           temperature2M: [0.00])
 
-    ///
-    /// Hourly url + TO DO: Legg til setting  ?
-    ///
-    let urlString = "https://archive-api.open-meteo.com/v1/archive?latitude=" + "\(lat)" + "&longitude=" + "\(lon)" +
+    let part1 = UserDefaults.standard.object(forKey: "Url1OpenMeteo") as? String ?? ""
+    
+    let urlString = part1 + "\(lat)" + "&longitude=" + "\(lon)" +
     "&timezone=auto" + "&hourly=temperature_2m" + "&start_date=" + forDate + "&end_date=" + forDate
 
     let url = URL(string: urlString)

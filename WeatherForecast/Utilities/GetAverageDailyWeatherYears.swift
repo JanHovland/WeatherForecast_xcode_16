@@ -20,13 +20,13 @@ func GetAverageDailyWeatherYears(startDate: String,
     var httpStatus: Int = 0
     
     var averageDailyYearDataRecord = AverageDailyYearDataRecord(time: [""],
-                                                                precipitationSum: [0.00])
-    
-    ///
-    /// Hourly url + TO DO: Legg til setting ?
-    ///
+                                                                precipitationSum:
+                                                                    [0.00])
     let toDate: String = "2020-12-31"
-    let urlString = "https://archive-api.open-meteo.com/v1/archive?latitude=" + "\(lat)" +
+    
+    let part1 = UserDefaults.standard.object(forKey: "Url1OpenMeteo") as? String ?? ""
+    
+    let urlString = part1 + "\(lat)" +
                     "&longitude=" + "\(lon)" + "&timezone=auto" + "&daily=precipitation_sum" +
                     "&start_date=" + startDate + "&end_date=" + toDate
     
