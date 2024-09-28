@@ -12,6 +12,11 @@ import CoreLocation
 import WeatherKit
 import CloudKit
 
+///
+/// Kan kompileres med : Version 16.0 (16A242d)
+///                 Version 16.1 beta (16B5001e)
+///
+
 // For å kunne bruke WeatherKit :
 
 // Gå til "Info"
