@@ -231,7 +231,6 @@
 		DBFD2DD9295B541100293B4D /* iconWindView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFD2DD8295B541100293B4D /* iconWindView.swift */; };
 		DBFD2DDB295C9DB200293B4D /* IconHumidityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFD2DDA295C9DB200293B4D /* IconHumidityView.swift */; };
 		DBFD2DDD295CB38300293B4D /* IconVisibilityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFD2DDC295CB38300293B4D /* IconVisibilityView.swift */; };
-		DBFD5B472B864C5600D627B0 /* AverageTemperaturePrecification.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFD5B462B864C5600D627B0 /* AverageTemperaturePrecification.swift */; };
 		DBFEC1402A7402E6003FC4FB /* WeatherInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFEC13F2A7402E6003FC4FB /* WeatherInfo.swift */; };
 		DBFEFF8B2BAF3C5C0003C105 /* FindDataLast30Days.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFEFF8A2BAF3C5C0003C105 /* FindDataLast30Days.swift */; };
 /* End PBXBuildFile section */
@@ -465,7 +464,6 @@
 		DBFD2DD8295B541100293B4D /* iconWindView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iconWindView.swift; sourceTree = "<group>"; };
 		DBFD2DDA295C9DB200293B4D /* IconHumidityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconHumidityView.swift; sourceTree = "<group>"; };
 		DBFD2DDC295CB38300293B4D /* IconVisibilityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconVisibilityView.swift; sourceTree = "<group>"; };
-		DBFD5B462B864C5600D627B0 /* AverageTemperaturePrecification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AverageTemperaturePrecification.swift; sourceTree = "<group>"; };
 		DBFEC13F2A7402E6003FC4FB /* WeatherInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherInfo.swift; sourceTree = "<group>"; };
 		DBFEFF8A2BAF3C5C0003C105 /* FindDataLast30Days.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindDataLast30Days.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -694,7 +692,6 @@
 				DBA5F20A2BC2F2B200D6C1C2 /* AverageMonthlyData.swift */,
 				DBE1F1B92BEBF9D300DF3D4F /* AveragePrecipitationNormalYears.swift */,
 				DB3E4D262BD7A5A000B928E6 /* AverageTemperatureMonth.swift */,
-				DBFD5B462B864C5600D627B0 /* AverageTemperaturePrecification.swift */,
 				DB8293652B1B40D50055BE65 /* Beaufort.swift */,
 				DBFA0FE72B60F45E0008E358 /* Country.swift */,
 				DBFA0FEB2B60F61D0008E358 /* CountryRecord.swift */,
@@ -1307,7 +1304,6 @@
 				DB5C0C562917CE3100141BDC /* UvIndexGraphicDisplay.swift in Sources */,
 				DBD4F1952BA38781001D5401 /* FindAverageYear.swift in Sources */,
 				DB75926D2ADAD6C300B772A9 /* ValueAtPositionChart.swift in Sources */,
-				DBFD5B472B864C5600D627B0 /* AverageTemperaturePrecification.swift in Sources */,
 				DB4A1F372A9F775300E4D1EB /* SettingView.swift in Sources */,
 				DB4447402B68332900C6CEF7 /* CountriesView.swift in Sources */,
 				DB43C45B28F8833F007D44EC /* AirPressure.swift in Sources */,

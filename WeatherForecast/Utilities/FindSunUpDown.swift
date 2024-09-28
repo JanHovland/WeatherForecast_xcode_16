@@ -40,11 +40,6 @@ func FindSunUpDown(url: String,
         lon = "\(5.655520)"  /// Varhaug
     }
     
-    ///
-    /// Den nye api fra met.no viser soloppgang og solnedgang for en dag:
-    /// https://api.met.no/weatherapi/sunrise/3.0/sun?lat=58.617383&lon=5.64511&date=2023-06-29&offset=+02:00
-    ///
-    
     sunRise = []
     sunSet = []
     

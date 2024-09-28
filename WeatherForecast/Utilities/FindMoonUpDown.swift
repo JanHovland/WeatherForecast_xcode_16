@@ -30,9 +30,6 @@ func FindMoonUpDown(url: String,
         lon = "\(5.655520)"  /// Varhaug
     }
     let urlString = url + "key=" + key + "&q=" + "\(lat),\(lon)"
-    /// Feil url: astronomy settes til astronomi l
-//     let urlString = "https://api.weatherapi.com/v1/astronomi.jsonn?key=c698affa91fa4e8fa7a95556230511&q=58.617191,5.644975"
-    ///
     let url = URL(string: urlString)
     ///
     if let url {

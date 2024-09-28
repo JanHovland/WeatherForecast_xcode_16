@@ -9,8 +9,6 @@ import Foundation
 import SwiftUI
 
 
-/// https://api.openweathermap.org/data/2.5/air_pollution?lat=50&lon=50&appid=
-
 func FindAirQuality(url: String,
                     key: String,
                     latitude : Double,
