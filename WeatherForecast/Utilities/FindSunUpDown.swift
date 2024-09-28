@@ -50,9 +50,6 @@ func FindSunUpDown(url: String,
         let date = Date().adding(days: i)
         let calculatedDate = FormatDateToString(date: date, format: "yyyy-MM-dd", offsetSec: offsetSec)
         let urlString = url + "lat=" + lat + "&lon=" + lon + "&date=" + calculatedDate + "&offset=" + offset
-///
-///        Test for feilmelding, lagt til &da=2  og met = mett
-//        let urlString = "https://api.mett.no/weatherapi/sunrise/3.0/sun?lat=58.617261&lon=5.6451&date=2024-07-07&offset=+02:00&da=2"
         let url = URL(string: urlString)
         if let url {
             do {
